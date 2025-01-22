@@ -1,3 +1,5 @@
+import importlib
+
 class BadModule:
     def __init__(self, module):
         self.module = module
@@ -18,7 +20,7 @@ def load_module(module):
         elif module == 'pandas':
             import pandas as m
         else:
-            raise NameError(module)
+            m = importlib.import_module(module)
     except ImportError:
         return BadModule(module)
 
